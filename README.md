@@ -104,4 +104,5 @@ We can query for it or use in the ssh script to the instance.
 
 ## Reference
 * https://github.com/terraform-providers/terraform-provider-aws/tree/master/examples/two-tier
+* https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
 * https://cloud-images.ubuntu.com/locator/ec2/
