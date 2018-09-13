@@ -3,6 +3,9 @@
 ## Install
 ```
 brew install terraform
+
+brew install ansible
+brew install terraform-inventory
 ```
 
 ## Prerequisite 
@@ -112,7 +115,22 @@ We can query for it or use in the ssh script to the instance, or use DNS entry c
 
 4. State of the execution is kept in `terraform.tfstate.*`. Check this in a repository to share system state with others.
 
+## Notes on using Ansible with Terraform
+* Ansible dynamic scripts downloaded from https://github.com/adammck/terraform-inventory via brew
+* Put it as default inventory source via `ansible.cfg`
+
+```
+ ❯❯❯ ansible all --list-hosts
+  hosts (1):
+    35.165.28.244
+
+ ❯❯❯ ansible role_example --list-hosts
+  hosts (1):
+    35.165.28.244
+```
+
 ## Reference
 * https://github.com/terraform-providers/terraform-provider-aws/tree/master/examples/two-tier
 * https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
 * https://cloud-images.ubuntu.com/locator/ec2/
+* https://github.com/adammck/terraform-inventory

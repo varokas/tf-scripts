@@ -73,7 +73,10 @@ resource "aws_instance" "example01" {
 
   vpc_security_group_ids = ["${aws_security_group.basic.id}"]
   subnet_id = "${aws_subnet.default.id}"
-
+  tags = { # These will be exposed to ansible as groups (e.g. role_example, env_dev)
+    role = "example"
+    env = "dev"
+  }
 }
 
 # Create DNS record on CloudFlare
