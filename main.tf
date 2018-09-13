@@ -2,6 +2,11 @@ provider "aws" {
   region = "us-west-2"
 }
 
+provider "cloudflare" {
+  email = "${var.cloudflare_email}"
+  token = "${var.cloudflare_token}"
+}
+
 # Define public key to be used to access instances
 resource "aws_key_pair" "auth" {
   key_name   = "aws_key"
@@ -69,6 +74,15 @@ resource "aws_instance" "example01" {
   vpc_security_group_ids = ["${aws_security_group.basic.id}"]
   subnet_id = "${aws_subnet.default.id}"
 
+}
+
+# Create DNS record on CloudFlare
+resource "cloudflare_record" "example01" {
+  domain = "varokas.com"
+  name   = "example01"
+  value  = "${aws_instance.example01.public_ip}"
+  type   = "A"
+  ttl    = 3600
 }
 
 # Define output that will print out when done and can be queried later

@@ -18,6 +18,12 @@ aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 ssh-keygen -f ~/.ssh/terraform
 ```
 
+3. Create `terraform.tfvars`
+```
+cloudflare_email="<cloudflare_email>"
+cloudflare_token="<cloudflare_token>" # From My Profile -> API Keys
+```
+
 ## Usage 
 1. `terraform init`. This will download plugins needed.
 2. `terraform apply`. Will create/update/destroy EC2 instances as defined in `main.tf`
@@ -93,11 +99,15 @@ Outputs we see are what is defined in the `output` block in `main.tf`
 
 3. ssh to the instance
 
-We can query for it or use in the ssh script to the instance.
+We can query for it or use in the ssh script to the instance, or use DNS entry created by cloudflare.
 ```
 ❯❯❯ terraform output example01-ip
 44.252.122.77
 ❯❯❯ ssh -i ~/.ssh/terraform ubuntu@`terraform output example01-ip`
+
+### DNS should work after a while
+❯❯❯ ssh -i ~/.ssh/terraform ubuntu@example01.varokas.com
+
 ```
 
 4. State of the execution is kept in `terraform.tfstate.*`. Check this in a repository to share system state with others.
