@@ -1,0 +1,47 @@
+---
+- name: Create domain directory
+  become: yes
+  file: 
+    path: "/var/www/{{domain_name}}"
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
+- name: Create domain site directory
+  become: yes
+  file: 
+    path: "/var/www/{{domain_name}}/html"
+    state: directory
+    owner: ubuntu
+    group: ubuntu
+
+- name: Create index.html
+  template: 
+    src: "index.html.j2"
+    dest: "/var/www/{{domain_name}}/html/index.html"
+
+- name: Create sites-available
+  become: yes
+  template: 
+    src: "sites-available.j2"
+    dest: "/etc/nginx/sites-available/{{domain_name}}"
+  notify:
+    - restart_nginx
+
+- name: Create sites-enabled
+  become: yes
+  file:
+    src: "/etc/nginx/sites-available/{{domain_name}}"
+    dest: "/etc/nginx/sites-enabled/{{domain_name}}"
+    state: link
+  notify:
+    - restart_nginx
+
+- name: Adjust hash bucket size
+  become: yes
+  lineinfile:
+    path: /etc/nginx/nginx.conf
+    regexp: '# server_names_hash_bucket_size 64;'
+    line: 'server_names_hash_bucket_size 64;'
+  notify:
+    - restart_nginx

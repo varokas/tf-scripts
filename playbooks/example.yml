@@ -1,5 +1,8 @@
 ---
 - hosts: role_example
+  vars:
+    domain_name: example01.varokas.com 
   roles:
     - ufw
     - nginx
+    - nginx-sites

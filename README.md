@@ -148,3 +148,4 @@ PLAY RECAP ******************************************
 * https://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html
 * https://cloud-images.ubuntu.com/locator/ec2/
 * https://github.com/adammck/terraform-inventory
+* https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04
