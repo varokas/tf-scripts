@@ -61,6 +61,30 @@ resource "aws_security_group" "basic" {
   }
 }
 
+# Create security group to allow http and https
+resource "aws_security_group" "https" {
+  name        = "https_security_group"
+  description = "Allow HTTP and HTTPs"
+  vpc_id      = "${aws_vpc.default.id}"
+
+  # HTTP access from anywhere
+  ingress {
+    from_port   = 80 
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # HTTPs access from anywhere
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
 # Create 1 instance of this name
 resource "aws_instance" "example01" {
   instance_type = "t3.nano"
@@ -71,7 +95,7 @@ resource "aws_instance" "example01" {
   } 
   key_name = "${aws_key_pair.auth.id}"
 
-  vpc_security_group_ids = ["${aws_security_group.basic.id}"]
+  vpc_security_group_ids = ["${aws_security_group.basic.id}","${aws_security_group.https.id}"]
   subnet_id = "${aws_subnet.default.id}"
   tags = { # These will be exposed to ansible as groups (e.g. role_example, env_dev)
     role = "example"
