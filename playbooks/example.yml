@@ -1,0 +1,4 @@
+---
+- hosts: role_example
+  roles:
+    - ufw

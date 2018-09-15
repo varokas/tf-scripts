@@ -1,0 +1,7 @@
+---
+- name: Enable Firewall and allow SSH
+  become: yes
+  ufw:
+    rule: allow
+    name: OpenSSH
+    state: enabled

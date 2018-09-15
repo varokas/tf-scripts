@@ -118,6 +118,7 @@ We can query for it or use in the ssh script to the instance, or use DNS entry c
 ## Notes on using Ansible with Terraform
 * Ansible dynamic scripts downloaded from https://github.com/adammck/terraform-inventory via brew
 * Put it as default inventory source via `ansible.cfg`
+* ansible.cfg is configured to read files in inventory/ as inventory file, so we need to symlink from `/usr/local/bin/terraform-inventory`
 
 ```
  ❯❯❯ ansible all --list-hosts
@@ -127,6 +128,19 @@ We can query for it or use in the ssh script to the instance, or use DNS entry c
  ❯❯❯ ansible role_example --list-hosts
   hosts (1):
     35.165.28.244
+
+ ❯❯❯ ansible-playbook playbooks/example.yml
+
+PLAY [role_example] *********************************
+
+TASK [Gathering Facts] ******************************
+ok: [35.162.30.126]
+
+TASK [ufw : Enable Firewall and allow SSH] **********
+changed: [35.162.30.126]
+
+PLAY RECAP ******************************************
+35.162.30.126              : ok=2    changed=1    unreachable=0    failed=0  
 ```
 
 ## Reference
