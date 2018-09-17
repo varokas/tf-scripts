@@ -12,8 +12,8 @@ brew install terraform-inventory
 1. Create ~/.aws/credentials. Obtain keys from Profile -> "My Security Credentials"
 ```
 [default]
-aws_access_key_id=AKIAIOSFODNN7EXAMPLE
-aws_secret_access_key=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+aws_access_key_id=<access_key_id>
+aws_secret_access_key=<secret>
 ```
 
 2. Create or copy a public-private key pair to access instances to `~/.ssh/terraform.pub`
