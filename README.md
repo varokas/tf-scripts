@@ -25,6 +25,7 @@ ssh-keygen -f ~/.ssh/terraform
 ```
 cloudflare_email="<cloudflare_email>"
 cloudflare_token="<cloudflare_token>" # From My Profile -> API Keys
+do_token="<digital_ocean_token>" # From Manage -> API -> Tokens
 ```
 
 ## Usage 

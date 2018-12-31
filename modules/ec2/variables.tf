@@ -14,7 +14,3 @@ variable "ubuntu_1804_uswest_2" {
 
 variable "cloudflare_email" { }
 variable "cloudflare_token" { } 
-
-variable "do_token" {
-  description = "Digital Ocean access token"
-}
