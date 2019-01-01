@@ -24,7 +24,7 @@ resource "digitalocean_droplet" "winter" {
 # Create DNS record on CloudFlare
 resource "cloudflare_record" "winter" {
   domain = "varokas.com"
-  name   = "blog"
+  name   = "winter"
   value  = "${digitalocean_droplet.winter.ipv4_address}"
   type   = "A"
   ttl    = 3600
