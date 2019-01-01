@@ -14,3 +14,4 @@ variable "do_token" {
 
 variable "cloudflare_email" { }
 variable "cloudflare_token" { } 
+variable "terraform_ssh_fingerprint" { }

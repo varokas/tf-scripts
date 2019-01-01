@@ -18,3 +18,4 @@ variable "cloudflare_token" { }
 variable "do_token" {
   description = "Digital Ocean access token"
 }
+variable "terraform_ssh_fingerprint" { }

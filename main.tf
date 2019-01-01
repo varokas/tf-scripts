@@ -3,4 +3,5 @@ module "varokas_com" {
   do_token = "${var.do_token}"
   cloudflare_email = "${var.cloudflare_email}"
   cloudflare_token = "${var.cloudflare_token}"
+  terraform_ssh_fingerprint = "${var.terraform_ssh_fingerprint}"
 }
